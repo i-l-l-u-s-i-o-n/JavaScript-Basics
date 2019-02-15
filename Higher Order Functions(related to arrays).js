@@ -60,7 +60,7 @@ eightees_company.forEach(company => console.log(company));
 
 
 
-// ===================================================== map() ======================================================== //
+// ===================================================== map() ========================================================== //
 
 // map(function(iterator, index, array){})
 
@@ -87,3 +87,77 @@ console.log(play_with_age);
 
 
 
+// ============================================== sort() ================================================================ //
+
+// Sorts the array as per the definition of callback function.
+
+// Sort the ages in increasing order.
+
+ages.sort(function(age1, age2){
+    if(age1 > age2){
+        return 1;
+    }else{
+        return -1;
+    }
+});
+
+console.log(ages);
+
+
+// Sort the companies as per their start date.
+
+let sorted_companies=companies.sort((c1, c2) => c1.start > c2.start ? 1: -1);          // Not a magic :)
+
+sorted_companies.forEach(company => console.log(company));
+
+// If no sort definition is provided the ->
+
+let sample=[5,45,33,65,12,123,543,76].sort();
+console.log(sample);
+
+// OUTPUT -> Array(8) [12, 123, 33, 45, 5, 543, 65, 76]           It only sorts on the basis of first digit !!
+
+let string_sample=["Hello","hello","there","!","54",433,"Wow",55].sort();
+console.log(string_sample);
+
+// OUTPUT -> Array(8) ["!", 433, "54", 55, "Hello", "Wow", "hello", "there"]     It again compares the first letter !!
+
+
+
+
+// ==================================================== reduce() ======================================================== //
+
+// array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+// Used to reduce the array to a single value.
+
+let ages_sum=ages.reduce(function(total, age){
+    return total+age;
+}, 0 );
+console.log(ages_sum);
+
+// Using arrow ->
+let sum_of_ages=ages.reduce((total, age) => total+age);
+console.log(sum_of_ages);
+
+// Get total years for all companies !
+
+let total_years=companies.reduce((total, company) => total+=(company.end-company.start), 0);
+console.log(total_years);
+
+
+
+// =======================================================================================================================//
+
+// COMBINING ALL METHODS IN SINGLE EXAMPLE - >>>>>>>>
+
+var special_ages=ages
+    .map(age => age * 2)                            // Multiply each age by 2 .
+    .filter(age => age >40 )                        // Return only ages, greater than 40.
+    .sort((age1, age2 ) => age1 > age2 ? 1 : -1)    // Sort ages in increasing order (using TERNARY operator).
+    .reduce((sum, age ) => sum+age, 0);             // Returns sum of all ages returned after processing by above 3 methods.
+
+console.log(special_ages);
+
+
+
+// ====================================================================================================================== //
