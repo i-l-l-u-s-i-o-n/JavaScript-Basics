@@ -14,7 +14,7 @@ const companies= [
     {name: "Company Nine", category: "Retail", start: 1981, end: 1989}
   ];
 
-// forEach( function( iterator, index, array))
+// forEach(function( iterator, index, array){})
 
 ages.forEach(function(age){
     if(age>21){
@@ -23,7 +23,7 @@ ages.forEach(function(age){
 });
 
 
-// ====================================  filter() ================================================= //
+// ================================================  filter() =========================================================== //
 
 // used to filter the elements of array based on the definition of callback function , when returns "true".
 
@@ -44,10 +44,46 @@ canApply=ages.filter( age => age>35);    // Again the beauty of arrow !
 
 console.log(canApply);
 
-// Using filter on companies[]
+// Using filter to get ratails complanies.
 let retail_companies=[];
 
 retail_companies=companies.filter( company => company.category==="Retail");
 
 retail_companies.forEach(company => console.log(company));
+
+
+// Using filter to get 80's company
+let eightees_company=[];
+eightees_company=companies.filter( company => company.start>=1980 && company.end<1990);
+
+eightees_company.forEach(company => console.log(company));
+
+
+
+// ===================================================== map() ======================================================== //
+
+// map(function(iterator, index, array){})
+
+// It creates a new array with elements returned from callback function called on given array.
+
+// Create a array which consist the name of each company .
+let company_names=companies.map(function(company){
+    return company.name;
+});
+
+
+// We can also use arraow function.
+// Create array of String conataing company name with thier start and end year.
+
+let company_details=companies.map( company => `${company.name}  [${company.start} - ${company.end}]`);
+company_details.forEach( company => console.log(company));
+
+// First find sqrt of each age then multiply it by 2 and store it in array !!!!!!
+// Using maps, it can be done as ->
+
+let play_with_age= ages.map(age => Math.sqrt(age)).map(age => age*2);      // No for(), No forEach, map() makes it pretty easy!!
+
+console.log(play_with_age);
+
+
 
