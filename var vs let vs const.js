@@ -1,4 +1,7 @@
 
+// Created by Shivam Shukla.
+
+
 // let declared outside the function doesn't create global variable.
 // It also doesn't attach the declared variable to "window" object.
 let count=10;
