@@ -40,3 +40,29 @@ console.log(average(20,25,30));
 // Using arrow function in Higher Order function .
 
 setTimeout(() => console.log("2 Seconds passed") , 1000);
+
+// In OOP section , we have to store "this" in a variable to use it in the anonymous function,
+// But using arrow function, we can directly use "this" as it has no function for which, "this" will be overridden. 
+// See following example->
+
+
+// Without arrow :( 
+function car(){
+    this.speed=0;
+    
+    var self = this;    // Using another variable to use "this".
+    setInterval(function(){
+        self.speed++;
+        console.log(self.speed);
+    }, 1000);
+}
+var car1=new car();
+
+
+// Using Arrow : ) 
+function bus(){
+    this.speed=100;
+
+    setInterval(() => { this.speed+=50; console.log(this.speed) }, 1500);
+}
+var bus1=new bus();
