@@ -231,4 +231,17 @@ shivam.sayHi();         // Hi Shivam
 
 // ===================================================================================================== //
 
-// 4.) RULE 4 - new Keyword
+// 4.) RULE 4 - new Keyword -> we can change the value of this by using new keyword to create the object.
+
+function Person(firstName, lastName){
+    // According to the first rule, the vaule of this will be global object which in case of browser is window object.
+    // So these variables are global variable.
+    // But using new keyword , we can make this to refer to the person object.
+    this.firstName= firstName;
+    this.lastName= lastName; 
+}
+
+var shivam =new Person("Shivam","Shukla");
+
+console.log(shivam.firstName);       //Shivam
+console.log(shivam.lastName);        //Shukla
