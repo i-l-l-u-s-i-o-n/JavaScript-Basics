@@ -33,3 +33,15 @@ function Bike(make,model,year){
 var ducati=new Bike("Awesome","ED332",2008);
 console.log(ducati.No_of_Wheel);     //2
 console.log(ducati.year);            //2008
+
+// we can also use apply ->
+function Bike(make,model,year){
+    Car.apply(this,[make,model,year]);  // This will work fine.  
+    this.No_of_Wheel=2;    
+}
+
+// OR we can also pass params as arguments->
+function Bike(make,model,year){
+    Car.apply(this,arguments);  // This will work fine.  
+    this.No_of_Wheel=2;    
+}
