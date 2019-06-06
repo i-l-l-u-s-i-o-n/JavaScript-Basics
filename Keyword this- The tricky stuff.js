@@ -173,4 +173,62 @@ shivam.add.call(tim, 2, 2, 2, 2);       //Sum : 8 calculated by Tim
 shivam.add.apply(tim, [2, 2, 2, 2]);    //Sum : 8 calculated by Tim
 
 
+// iii.) bind(thisArg, a, b, c, d, ......) -> same as call() but we have to explicitly invoke the method returned by bind().
 
+var shivam= {
+    name:"Shivam",
+
+    sayHi: function(){
+        console.log("Hi "+this.name);
+    },
+
+    add : function(a,b,c,d){
+        console.log("Sum : "+(a+b+c+d) +" calculated by "+this.name);
+    }
+}
+var tim= {
+    name:"Tim",
+}
+
+var timCalculated= shivam.add.bind(tim, 2, 2, 2, 2);
+timCalculated();                        //Sum : 8 calculated by Tim
+
+// We need not to pass all params in the bind(), we can also pass in the function returned by bind().
+var timCalculated2= shivam.add.bind(tim, 2, 2);
+timCalculated2(2, 2);                   //Sum : 8 calculated by Tim 
+
+
+// More tricky example of bind->
+
+var shivam= {
+
+    name:"Shivam",
+    sayHi: function(){
+        setTimeout(function(){
+            console.log("Hi "+this.name); // Here this refers to the window object as setTimeouut() is a methhod on window object.   
+        },1000);
+    }
+}
+
+shivam.sayHi();   // Hi undefined
+
+// We can't use call or apply as the are invoked immidiately so the can't be used for the asyn function such as setTimeout().
+// To solve this problem we can use bind() because it doesn't invoke immidiately.
+
+
+
+var shivam= {
+
+    name:"Shivam",
+    sayHi: function(){
+        setTimeout(function(){
+            console.log("Hi "+this.name); 
+        }.bind(this),1000);  // here this refers to the shivam object.
+    }
+}
+
+shivam.sayHi();         // Hi Shivam
+
+// ===================================================================================================== //
+
+// 4.) RULE 4 - new Keyword
